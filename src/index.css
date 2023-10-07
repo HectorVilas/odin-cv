@@ -1,0 +1,13 @@
+body {
+  display: flex;
+  justify-content: center;
+  /* margin: 0; */
+}
+
+main {
+  background-color: hsl(0, 0%, 98%);
+  width: 100vw;
+  max-width: 900px;
+
+  outline: 1px solid navy;
+}
