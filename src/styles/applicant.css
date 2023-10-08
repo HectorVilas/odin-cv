@@ -1,7 +1,7 @@
 .applicant {
+  grid-area: applicant;
   display: grid;
   grid-auto-columns: auto 1fr;
-  /* grid-template-rows: repeat(4, auto); */
   grid-template-rows: 50px 30px 40px auto;
   grid-template-areas:
     "photo name"
@@ -19,7 +19,7 @@
   width: 200px;
   border-radius: 50%;
   align-self: center;
-  margin: 20px;
+  margin-right: 20px;
 }
 
 .applicant h1 {
