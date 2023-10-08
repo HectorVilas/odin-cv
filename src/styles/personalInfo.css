@@ -1,0 +1,29 @@
+.personal-info {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  grid-template-columns: 1fr;
+  padding: 8px;
+}
+
+/* .personal-info .about {} */
+
+/* .personal-info .contact {} */
+
+.personal-info .contact ul {
+  padding: 0;
+}
+
+.personal-info .contact li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px;
+  list-style: none;
+  /* align-items: center; */
+  margin: 4px 0;
+}
+
+.personal-info .contact li img {
+  width: 30px;
+  aspect-ratio: 1/1;
+  align-self: center;
+}
