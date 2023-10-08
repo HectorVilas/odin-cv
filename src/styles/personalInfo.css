@@ -1,8 +1,19 @@
 .personal-info {
+  position: relative;
   display: grid;
   grid-template-rows: 1fr auto;
   grid-template-columns: 1fr;
   padding: 8px;
+}
+.personal-info::after {
+  position: absolute;
+  content: "";
+  right: 0;
+  top: 50%;
+  height: calc(100% - 50px);
+  transform: translateY(-50%);
+  border: 1px solid hsl(0, 0%, 90%);
+  border-radius: 100%;
 }
 
 /* .personal-info .about {} */
