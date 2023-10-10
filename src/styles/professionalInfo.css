@@ -3,6 +3,7 @@
   grid-template-rows: repeat(2, 1fr);
   grid-template-columns: 1fr;
   padding: 8px;
+  padding-left: 24px;
 }
 
 .professional-info ul {
