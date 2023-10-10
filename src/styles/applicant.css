@@ -1,4 +1,8 @@
 .applicant {
+  --img-border-width: 10px;
+  --diagonal-distance: 160px;
+  --bg-color-1: hsl(200, 50%, 70%);
+  --bg-color-2: hsl(200, 60%, 80%);
   grid-area: applicant;
   display: grid;
   grid-auto-columns: auto 1fr;
@@ -9,17 +13,26 @@
     "photo skills"
     "photo skills-list";
   gap: 4px 8px;
-  background-color: rgb(207, 231, 245);
+  /* background-color: rgb(207, 231, 245); */
+  background: linear-gradient(
+    60deg,
+    var(--bg-color-1) var(--diagonal-distance),
+    #fff var(--diagonal-distance),
+    #fff calc(var(--diagonal-distance) + var(--img-border-width)),
+    var(--bg-color-2) calc(var(--diagonal-distance) + var(--img-border-width))
+  );
   padding: 16px;
   align-items: center;
 }
 
 .applicant img {
   grid-area: photo;
+  box-sizing: border-box;
   width: 200px;
   border-radius: 50%;
   align-self: center;
   margin-right: 20px;
+  border: var(--img-border-width) solid white;
 }
 
 .applicant h1 {

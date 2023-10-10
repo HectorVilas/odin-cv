@@ -1,10 +1,11 @@
 body {
   display: flex;
   justify-content: center;
-  /* margin: 0; */
 }
 
 main {
+  --height-bottom-decoration: 24px;
+  position: relative;
   display: grid;
   grid-template-columns: 250px 1fr;
   grid-template-rows: auto 1fr;
@@ -14,6 +15,25 @@ main {
   background-color: hsl(0, 0%, 98%);
   width: 100vw;
   max-width: 900px;
+  padding-bottom: var(--height-bottom-decoration);
+}
 
-  outline: 1px solid navy;
+main::after {
+  --img-border-width: 10px;
+  --diagonal-distance: 360px;
+  --bg-color-1: hsl(200, 50%, 70%);
+  --bg-color-2: hsl(200, 60%, 80%);
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: var(--height-bottom-decoration);
+  left: 0;
+  bottom: 0;
+  background: linear-gradient(
+    60deg,
+    var(--bg-color-1) var(--diagonal-distance),
+    #fff var(--diagonal-distance),
+    #fff calc(var(--diagonal-distance) + var(--img-border-width)),
+    var(--bg-color-2) calc(var(--diagonal-distance) + var(--img-border-width))
+  );
 }
