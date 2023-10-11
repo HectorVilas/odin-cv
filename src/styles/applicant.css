@@ -14,7 +14,6 @@
     "photo skills"
     "photo skills-list";
   gap: 4px 8px;
-  /* background-color: rgb(207, 231, 245); */
   background: linear-gradient(
     60deg,
     var(--bg-color-1) var(--diagonal-distance),
@@ -30,10 +29,12 @@
   grid-area: photo;
   box-sizing: border-box;
   width: 200px;
+  aspect-ratio: 1/1;
   border-radius: 50%;
   align-self: center;
   margin-right: 20px;
   border: var(--img-border-width) solid white;
+  background-color: hsl(0, 0%, 93%);
 }
 
 .applicant h1 {
