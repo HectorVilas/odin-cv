@@ -1,0 +1,25 @@
+.professional-info {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 1fr;
+  padding: 8px;
+  padding-left: 24px;
+}
+
+.professional-info ul {
+  padding: 0;
+}
+
+.professional-info li {
+  list-style: none;
+  margin-bottom: 28px;
+
+}
+
+.professional-info h3 {
+  margin: 0;
+}
+
+.professional-info p {
+  margin: 4px 0;
+}
