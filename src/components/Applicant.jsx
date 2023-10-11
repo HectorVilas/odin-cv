@@ -11,7 +11,7 @@ function DisplayData(props) {
       <ul>
         {props.skills.map((skill) => <li key={skill.id}>{skill.skillName}</li>)}
       </ul>
-      <button className='btn-edit'>Edit information</button>
+      <button onClick={() => props.setEditMode(true)} className='btn-edit'>Edit information</button>
     </div>
   )
 }
@@ -34,6 +34,10 @@ function EditData(props) {
 
         <input type="text" name="skillsList" id="skillsList" defaultValue={skillsList}/>
       <label htmlFor="skillsList"> Skills (separated by commas)</label>
+      <button onClick={(e) => {
+        e.preventDefault()
+        props.setEditMode(false)
+      }} className='btn-edit btn-visible'>Apply changes</button>
     </form>
   )
 }
@@ -58,12 +62,25 @@ export default function Applicant() {
   const [editMode, setEditMode] = useState(false);
   
   return (
-    // <DisplayData photoUrl={example.photoUrl} name={example.name} surname={example.surname} currentJob={example.currentJob} skills={example.skills}/>
     <>
       {
         editMode
-        ? <EditData photoUrl={data.photoUrl} name={data.name} surname={data.surname} currentJob={data.currentJob} skills={data.skills}/>
-        : <DisplayData photoUrl={data.photoUrl} name={data.name} surname={data.surname} currentJob={data.currentJob} skills={data.skills}/>
+        ? <EditData
+          photoUrl={data.photoUrl}
+          name={data.name}
+          surname={data.surname}
+          currentJob={data.currentJob}
+          skills={data.skills}
+          setEditMode={setEditMode}
+        />
+        : <DisplayData
+          photoUrl={data.photoUrl}
+          name={data.name}
+          surname={data.surname}
+          currentJob={data.currentJob}
+          skills={data.skills}
+          setEditMode={setEditMode}
+        />
       }
     </>
   )
