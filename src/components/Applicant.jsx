@@ -9,7 +9,7 @@ function DisplayData(props) {
       <p>{props.currentJob}</p>
       <h2>Skills/Stack</h2>
       <ul>
-        {props.skills.map((skill) => <li key={skill.id}>{skill.skillName}</li>)}
+        {props.skills.split(', ').map((skill, i) => <li key={i}>{skill}</li>)}
       </ul>
       <button onClick={() => props.setEditMode(true)} className='btn-edit'>Edit information</button>
     </div>
@@ -17,22 +17,27 @@ function DisplayData(props) {
 }
 
 function EditData(props) {
-  const skillsList = [...props.skills].map((skill) => skill.skillName).join(', ');
   return (
     <form action='' className='applicant applicant-edit'>
-        <input type="url" name="photoUrl" id="photoUrl" defaultValue={props.photoUrl}/>
+      <input onChange={(e) =>
+        props.setData({...props, photoUrl: e.target.value})
+      } type="url" name="photoUrl" id="photoUrl" defaultValue={props.photoUrl}/>
       <label htmlFor="photoUrl"> Photo URL</label>
-
-        <input type="text" name="name" id="name" defaultValue={props.name}/>
+      <input onChange={(e) =>
+        props.setData({...props, name: e.target.value})
+      } type="text" name="name" id="name" defaultValue={props.name}/>
       <label htmlFor="name"> Name</label>
-
-        <input type="text" name="surname" id="surname" defaultValue={props.surname}/>
+      <input onChange={(e) =>
+        props.setData({...props, surname: e.target.value})
+      } type="text" name="surname" id="surname" defaultValue={props.surname}/>
       <label htmlFor="surname"> Last Name</label>
-
-        <input type="text" name="currentJob" id="currentJob" defaultValue={props.currentJob}/>
+      <input onChange={(e) =>
+        props.setData({...props, currentJob: e.target.value})
+      } type="text" name="currentJob" id="currentJob" defaultValue={props.currentJob}/>
       <label htmlFor="currentJob"> Current Job</label>
-
-        <input type="text" name="skillsList" id="skillsList" defaultValue={skillsList}/>
+      <input onChange={(e) =>
+        props.setData({...props, skills: e.target.value})
+      } type="text" name="skillsList" id="skillsList" defaultValue={props.skills}/>
       <label htmlFor="skillsList"> Skills (separated by commas)</label>
       <button onClick={(e) => {
         e.preventDefault()
@@ -48,14 +53,7 @@ export default function Applicant() {
     surname: 'Doe',
     photoUrl: 'https://i.imgur.com/TR28rqs.jpg',
     currentJob: 'Web Dev',
-    skills: [
-      {id: 0, skillName: 'HTML'},
-      {id: 1, skillName: 'CSS'},
-      {id: 2, skillName: 'JavaScript'},
-      {id: 3, skillName: 'Webpack'},
-      {id: 4, skillName: 'Vite'},
-      {id: 5, skillName: 'React'},
-    ],
+    skills: 'HTML, CSS, JavaScript, Webpack, Vite, React',
   }
 
   const [data, setData] = useState(example);
@@ -72,6 +70,7 @@ export default function Applicant() {
           currentJob={data.currentJob}
           skills={data.skills}
           setEditMode={setEditMode}
+          setData={setData}
         />
         : <DisplayData
           photoUrl={data.photoUrl}
