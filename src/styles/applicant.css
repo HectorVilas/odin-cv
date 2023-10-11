@@ -97,3 +97,8 @@
   grid-auto-rows: 1fr;
   background: var(--bg-color-2);
 }
+
+.btn-edit.btn-visible {
+  opacity: 100%;
+  transition: none;
+}
