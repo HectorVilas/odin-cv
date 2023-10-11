@@ -1,4 +1,42 @@
 import '../styles/applicant.css'
+import { useState } from 'react';
+
+function DisplayData(props) {
+  return (
+    <div className='applicant'>
+      <img src={props.photoUrl} />
+      <h1>{props.name} {props.surname}</h1>
+      <p>{props.currentJob}</p>
+      <h2>Skills/Stack</h2>
+      <ul>
+        {props.skills.map((skill) => <li key={skill.id}>{skill.skillName}</li>)}
+      </ul>
+      <button className='btn-edit'>Edit information</button>
+    </div>
+  )
+}
+
+function EditData(props) {
+  const skillsList = [...props.skills].map((skill) => skill.skillName).join(', ');
+  return (
+    <form action='' className='applicant applicant-edit'>
+        <input type="url" name="photoUrl" id="photoUrl" defaultValue={props.photoUrl}/>
+      <label htmlFor="photoUrl"> Photo URL</label>
+
+        <input type="text" name="name" id="name" defaultValue={props.name}/>
+      <label htmlFor="name"> Name</label>
+
+        <input type="text" name="surname" id="surname" defaultValue={props.surname}/>
+      <label htmlFor="surname"> Last Name</label>
+
+        <input type="text" name="currentJob" id="currentJob" defaultValue={props.currentJob}/>
+      <label htmlFor="currentJob"> Current Job</label>
+
+        <input type="text" name="skillsList" id="skillsList" defaultValue={skillsList}/>
+      <label htmlFor="skillsList"> Skills (separated by commas)</label>
+    </form>
+  )
+}
 
 export default function Applicant() {
   const example = {
@@ -13,32 +51,20 @@ export default function Applicant() {
       {id: 3, skillName: 'Webpack'},
       {id: 4, skillName: 'Vite'},
       {id: 5, skillName: 'React'},
-      // {id: 6, skillName: 'TEST'},
-      // {id: 7, skillName: 'TEST'},
-      // {id: 8, skillName: 'TEST'},
-      // {id: 9, skillName: 'TEST'},
-      // {id: 10, skillName: 'TEST'},
-      // {id: 11, skillName: 'TEST'},
-      // {id: 12, skillName: 'TEST'},
-      // {id: 13, skillName: 'TEST'},
-      // {id: 14, skillName: 'TEST'},
-      // {id: 15, skillName: 'TEST'},
-      // {id: 16, skillName: 'TEST'},
-      // {id: 17, skillName: 'TEST'},
-      // {id: 18, skillName: 'TEST'},
-      // {id: 19, skillName: 'TEST'},
-      // {id: 20, skillName: 'TEST'},
     ],
   }
+
+  const [data, setData] = useState(example);
+  const [editMode, setEditMode] = useState(false);
+  
   return (
-    <div className='applicant'>
-      <img src={example.photoUrl} />
-      <h1>{example.name} {example.surname}</h1>
-      <p>{example.currentJob}</p>
-      <h2>Skills/Stack</h2>
-      <ul>
-        {example.skills.map((skill) => <li key={skill.id}>{skill.skillName}</li>)}
-      </ul>
-    </div>
+    // <DisplayData photoUrl={example.photoUrl} name={example.name} surname={example.surname} currentJob={example.currentJob} skills={example.skills}/>
+    <>
+      {
+        editMode
+        ? <EditData photoUrl={data.photoUrl} name={data.name} surname={data.surname} currentJob={data.currentJob} skills={data.skills}/>
+        : <DisplayData photoUrl={data.photoUrl} name={data.name} surname={data.surname} currentJob={data.currentJob} skills={data.skills}/>
+      }
+    </>
   )
 }
