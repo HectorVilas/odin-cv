@@ -3,6 +3,7 @@ body {
   justify-content: center;
   background-color: #555;
   margin: 8px;
+  min-width: 500px;
 }
 
 #root {
