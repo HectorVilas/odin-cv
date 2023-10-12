@@ -1,6 +1,14 @@
 body {
   display: flex;
   justify-content: center;
+  background-color: #555;
+  margin: 8px;
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 h1 {
@@ -33,7 +41,7 @@ main {
     "applicant applicant"
     "about professional";
   background-color: hsl(0, 0%, 98%);
-  width: 100vw;
+  width: 100%;
   max-width: 900px;
   padding-bottom: var(--height-bottom-decoration);
 }
