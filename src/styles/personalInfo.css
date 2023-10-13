@@ -58,7 +58,7 @@
   text-align: end;
 }
 
-.personal-info button {
+.personal-info .btn-edit-info {
   position: absolute;
   opacity: 0%;
   top: 10px;
@@ -69,6 +69,6 @@
 
 }
 
-.personal-info:hover button {
+.personal-info:hover .btn-edit-info {
   opacity: 100%;
 }

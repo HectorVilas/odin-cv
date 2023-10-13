@@ -16,7 +16,7 @@ function DisplayData(props) {
         })}
         </ul>
       </div>
-      <button onClick={() => props.setEditMode(true)}>Edit information</button>
+      <button onClick={() => props.setEditMode(true)} className='btn-edit-info'>Edit information</button>
     </div>
   )
 }
@@ -49,7 +49,7 @@ function EditData(props) {
         })}
         </ul>
       </div>
-      <button onClick={() => props.setEditMode(false)}>Apply changes</button>
+      <button onClick={() => props.setEditMode(false)} className='btn-edit-info'>Apply changes</button>
     </div>
   )
 }
