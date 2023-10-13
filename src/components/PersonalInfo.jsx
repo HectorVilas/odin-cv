@@ -45,9 +45,11 @@ function EditData(props) {
             <input type="text" name={`contact-img-${medium.id}`} id={`contact-img-${medium.id}`} defaultValue={medium.imageUrl}/>
             <label htmlFor={`contact-info-${medium.id}`}>Info</label>
             <input type="text" name={`contact-info-${medium.id}`} id={`contact-info-${medium.id}`} defaultValue={medium.content} />
+            <button className='btn-delete-info'>X</button>
             </li>
         })}
         </ul>
+        <button className='btn-add-info'>Add another item</button>
       </div>
       <button onClick={() => props.setEditMode(false)} className='btn-edit-info'>Apply changes</button>
     </div>
