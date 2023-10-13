@@ -50,6 +50,11 @@
 }
 
 .personal-info-edit .contact li {
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas:
+    "label-img input-img delete"
+    "label-info input-info delete";
   padding: 6px 0;
   gap: 4px;
 }
@@ -71,4 +76,28 @@
 
 .personal-info:hover .btn-edit-info {
   opacity: 100%;
+}
+
+label[for|="contact-img"] {
+  grid-area: label-img;
+}
+
+label[for|="contact-info"] {
+  grid-area: label-info;
+}
+
+input[name|="contact-img"] {
+  grid-area: input-img;
+}
+
+input[name|="contact-info"] {
+  grid-area: input-info;
+}
+
+.btn-delete-info {
+  grid-area: delete;
+}
+
+.btn-add-info {
+  width: 100%;
 }
