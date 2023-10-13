@@ -1,5 +1,24 @@
 import '../styles/PersonalInfo.css'
 
+function DisplayData(props) {
+  return (
+    <div className="personal-info">
+      <div className="about">
+        <h2>About Me:</h2>
+        <p>{props.about}</p>
+      </div>
+      <div className="contact">
+        <h2>Contact Info:</h2>
+        <ul>
+        {props.contact.map((medium) => {
+          return <li key={medium.type}><img src={medium.imageUrl}/>{medium.content}</li>
+        })}
+        </ul>
+      </div>
+    </div>
+  )
+}
+
 export default function PersonalInfo() {
   const example = {
     about: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium enim placeat quae suscipit culpa voluptatibus asperiores nulla debitis ipsam non.',
@@ -26,20 +45,8 @@ export default function PersonalInfo() {
       },
     ],
   }
+
   return (
-    <div className="personal-info">
-      <div className="about">
-        <h2>About Me:</h2>
-        <p>{example.about}</p>
-      </div>
-      <div className="contact">
-        <h2>Contact Info:</h2>
-        <ul>
-        {example.contact.map((medium) => {
-          return <li key={medium.type}><img src={medium.imageUrl}/>{medium.content}</li>
-        })}
-        </ul>
-      </div>
-    </div>
+    <DisplayData about={example.about} contact={example.contact}/>
   )
 }
