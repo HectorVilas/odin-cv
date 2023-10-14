@@ -65,7 +65,14 @@ function EditData(props) {
             </li>
         })}
         </ul>
-        <button className='btn-add-info'>Add another item</button>
+        <button className='btn-add-info' onClick={() => {
+          const newValue = {
+            id: crypto.randomUUID(),
+            imageUrl: "https://i.imgur.com/82HIBHl.png",
+            content: "",
+          };
+          props.editData({...props, contact: [...props.contact, newValue]})
+        }}>Add another item</button>
       </div>
       <button onClick={() => props.setEditMode(false)} className='btn-edit-info'>Apply changes</button>
     </div>
@@ -77,22 +84,22 @@ export default function PersonalInfo() {
     about: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium enim placeat quae suscipit culpa voluptatibus asperiores nulla debitis ipsam non.',
     contact: [
       {
-        id: 0,
+        id: crypto.randomUUID(),
         imageUrl: 'https://i.imgur.com/NVWfDrG.png',
         content: 'john-doe@example.com',
       },
       {
-        id: 1,
+        id: crypto.randomUUID(),
         imageUrl: 'https://i.imgur.com/CiLmN6M.png',
         content: '12-3456-7890',
       },
       {
-        id: 2,
+        id: crypto.randomUUID(),
         imageUrl: 'https://i.imgur.com/jSITzbE.png',
         content: '?????',
       },
       {
-        id: 3,
+        id: crypto.randomUUID(),
         imageUrl: 'https://i.imgur.com/XQebNSH.png',
         content: 'Lorem Road 1234, Ipsum City, Dolor Sit State',
       },
