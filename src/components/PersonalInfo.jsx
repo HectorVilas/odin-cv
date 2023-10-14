@@ -31,6 +31,7 @@ function EditData(props) {
           id="personal-about"
           cols="30" rows="10"
           defaultValue={props.about}
+          placeholder='Introduce yourself here, think about what might be relevant to the position you are applying for'
           onChange={(e) => {
             props.editData({...props, about: e.target.value})
           }}
@@ -42,7 +43,7 @@ function EditData(props) {
         {props.contact.map((medium, itemIdx) => {
           return <li key={medium.id}>
             <label htmlFor={`contact-img-${medium.id}`}>Img</label>
-            <input type="text" name={`contact-img-${medium.id}`} id={`contact-img-${medium.id}`} defaultValue={medium.imageUrl} onChange={(e) => {
+            <input type="text" name={`contact-img-${medium.id}`} id={`contact-img-${medium.id}`} defaultValue={medium.imageUrl} placeholder='E.g.: https://i.imgur.com/NVWfDrG.png' onChange={(e) => {
               const newValue = {
                 id: medium.id,
                 imageUrl: e.target.value,
@@ -51,7 +52,7 @@ function EditData(props) {
               props.editData({...props, contact: props.contact.map((item, i) => i === itemIdx ? newValue : item)})
             }}/>
             <label htmlFor={`contact-info-${medium.id}`}>Info</label>
-            <input type="text" name={`contact-info-${medium.id}`} id={`contact-info-${medium.id}`} defaultValue={medium.content} onChange={(e) => {
+            <input type="text" name={`contact-info-${medium.id}`} id={`contact-info-${medium.id}`} defaultValue={medium.content} placeholder='E.g.: john-doe@example.com' onChange={(e) => {
               const newValue = {
                 id: medium.id,
                 imageUrl: medium.imageUrl,
