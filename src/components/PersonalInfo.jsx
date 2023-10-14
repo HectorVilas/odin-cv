@@ -12,7 +12,7 @@ function DisplayData(props) {
         <h2>Contact Info:</h2>
         <ul>
         {props.contact.map((medium) => {
-          return <li key={medium.type}><img src={medium.imageUrl}/>{medium.content}</li>
+          return <li key={medium.id}><img src={medium.imageUrl}/>{medium.content}</li>
         })}
         </ul>
       </div>
@@ -39,13 +39,29 @@ function EditData(props) {
       <div className="contact">
         <h2>Contact Info:</h2>
         <ul>
-        {props.contact.map((medium) => {
+        {props.contact.map((medium, itemIdx) => {
           return <li key={medium.id}>
             <label htmlFor={`contact-img-${medium.id}`}>Img</label>
-            <input type="text" name={`contact-img-${medium.id}`} id={`contact-img-${medium.id}`} defaultValue={medium.imageUrl}/>
+            <input type="text" name={`contact-img-${medium.id}`} id={`contact-img-${medium.id}`} defaultValue={medium.imageUrl} onChange={(e) => {
+              const newValue = {
+                id: medium.id,
+                imageUrl: e.target.value,
+                content: medium.content,
+              };
+              props.editData({...props, contact: props.contact.map((item, i) => i === itemIdx ? newValue : item)})
+            }}/>
             <label htmlFor={`contact-info-${medium.id}`}>Info</label>
-            <input type="text" name={`contact-info-${medium.id}`} id={`contact-info-${medium.id}`} defaultValue={medium.content} />
-            <button className='btn-delete-info'>X</button>
+            <input type="text" name={`contact-info-${medium.id}`} id={`contact-info-${medium.id}`} defaultValue={medium.content} onChange={(e) => {
+              const newValue = {
+                id: medium.id,
+                imageUrl: medium.imageUrl,
+                content: e.target.value,
+              };
+              props.editData({...props, contact: props.contact.map((item, i) => i === itemIdx ? newValue : item)})
+            }}/>
+            <button className='btn-delete-info' onClick={() => {
+              props.editData({...props, contact: props.contact.filter((item, i) => i !== itemIdx)})
+            }}>X</button>
             </li>
         })}
         </ul>
@@ -62,25 +78,21 @@ export default function PersonalInfo() {
     contact: [
       {
         id: 0,
-        type: 'email',
         imageUrl: 'https://i.imgur.com/NVWfDrG.png',
         content: 'john-doe@example.com',
       },
       {
         id: 1,
-        type: 'phone',
         imageUrl: 'https://i.imgur.com/CiLmN6M.png',
         content: '12-3456-7890',
       },
       {
         id: 2,
-        type: 'linkedin',
         imageUrl: 'https://i.imgur.com/jSITzbE.png',
         content: '?????',
       },
       {
         id: 3,
-        type: 'adress',
         imageUrl: 'https://i.imgur.com/XQebNSH.png',
         content: 'Lorem Road 1234, Ipsum City, Dolor Sit State',
       },
