@@ -14,7 +14,7 @@
 .professional-info li {
   list-style: none;
   margin-bottom: 28px;
-
+  
 }
 
 .professional-info h3 {
@@ -37,4 +37,58 @@
 
 .professional-info:hover .btn-edit-professional {
   opacity: 100%;
+}
+
+/* edit mode */
+
+.professional-info-edit li {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-template-rows: repeat(5, auto);
+  grid-template-areas:
+    "title title-input title-input title-input"
+    "place place-input place-input place-input"
+    "from-year from-year-input to-year to-year-input"
+    "description description description description"
+    "description-input description-input description-input description-input";
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+label[for|="title"] {
+  grid-area: title;
+}
+input[name|="title"] {
+  grid-area: title-input;
+}
+
+label[for|="place"] {
+  grid-area: place;
+}
+input[name|="place"] {
+  grid-area: place-input;
+}
+
+label[for|="from-year"] {
+  grid-area: from-year;
+}
+input[name|="from-year"] {
+  grid-area: from-year-input;
+}
+
+label[for|="to-year"] {
+  grid-area: to-year;
+}
+input[name|="to-year"] {
+  grid-area: to-year-input;
+}
+
+label[for|="description"] {
+  grid-area: description;
+}
+
+textarea[name|="description"] {
+  grid-area: description-input;
+  resize: none;
+  height: 100px;
 }
