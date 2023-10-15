@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import '../styles/ProfessionalInfo.css'
 
-function Category({title, items}) {
+function Category(props) {
   return (
-    <div className={title.split(" ").join("-").toLowerCase()}>
-      <h2>{title}</h2>
+    <div className={props.title.split(" ").join("-").toLowerCase()}>
+      <h2>{props.title}</h2>
       <ul>
-      {items.map((item) => {
+      {props.items.map((item) => {
         return (
         <li key={item.id}>
           <div>
