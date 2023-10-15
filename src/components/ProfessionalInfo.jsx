@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import '../styles/ProfessionalInfo.css'
 
 function Category({title, items}) {
@@ -18,6 +19,16 @@ function Category({title, items}) {
       })}
       </ul>
     </div>
+  )
+}
+
+function DisplayData(props) {
+  return (
+    <div className="professional-info">
+    {props.categories.map((category) => {
+      return <Category key={category.type} title={category.type} items={category.items}/>
+    })}
+  </div>
   )
 }
 
@@ -62,12 +73,11 @@ export default function ProfessionalInfo() {
       ],
     },
   ]
+  
+  const [data, editData] = useState(example)
+  const [editMode, setEditMode] = useState(false)
 
   return (
-    <div className="professional-info">
-      {example.map((category) => {
-        return <Category key={category.type} title={category.type} items={category.items}/>
-      })}
-    </div>
+    <DisplayData categories={data} setEditMode={setEditMode}/>
   )
 }
