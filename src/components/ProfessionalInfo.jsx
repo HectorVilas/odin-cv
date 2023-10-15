@@ -25,10 +25,19 @@ function Category({title, items}) {
 function DisplayData(props) {
   return (
     <div className="professional-info">
-    {props.categories.map((category) => {
-      return <Category key={category.type} title={category.type} items={category.items}/>
-    })}
-  </div>
+      {props.categories.map((category) => {
+        return <Category key={category.type} title={category.type} items={category.items}/>
+      })}
+      <button onClick={() => props.setEditMode(true)} className='btn-edit-professional'>Edit information</button>
+    </div>
+  )
+}
+
+function EditData(props) {
+  return (
+    <div className="professional-info professional-info-edit">
+      <button onClick={() => props.setEditMode(false)} className='btn-edit-professional'>Apply changes</button>
+    </div>
   )
 }
 
@@ -78,6 +87,8 @@ export default function ProfessionalInfo() {
   const [editMode, setEditMode] = useState(false)
 
   return (
-    <DisplayData categories={data} setEditMode={setEditMode}/>
+    editMode
+    ? <EditData categories={data} setEditMode={setEditMode} editData={editData}/>
+    : <DisplayData categories={data} setEditMode={setEditMode}/>
   )
 }
