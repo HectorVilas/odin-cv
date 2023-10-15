@@ -22,6 +22,33 @@ function Category(props) {
   )
 }
 
+function EditCategory(props) {
+  const convertedClassName = props.title.split(" ").join("-").toLowerCase();
+  return (
+    <div className={`${convertedClassName} ${convertedClassName}-edit`}>
+      <h2>{props.title}</h2>
+      <ul>
+        {props.items.map((item) => {
+          return (
+            <li key={item.id}>
+              <label htmlFor={`title-${item.id}`}>Title</label>
+              <input type="text" name={`title-${item.id}`} id={`title-${item.id}`} />
+              <label htmlFor={`place-${item.id}`}>Place</label>
+              <input type="text" name={`place-${item.id}`} id={`place-${item.id}`} />
+              <label htmlFor={`from-year-${item.id}`}>From</label>
+              <input type="tel" name={`from-year-${item.id}`} id={`from-year-${item.id}`} />
+              <label htmlFor={`to-year-${item.id}`}>To</label>
+              <input type="tel" name={`to-year-${item.id}`} id={`to-year-${item.id}`} />
+              <label htmlFor={`description-${item.id}`}>Description</label>
+              <textarea name={`description-${item.id}`} id={`description-${item.id}`} cols="30" rows="10"></textarea>
+            </li>
+          )
+        })}
+      </ul>
+    </div>
+  )
+}
+
 function DisplayData(props) {
   return (
     <div className="professional-info">
@@ -36,6 +63,9 @@ function DisplayData(props) {
 function EditData(props) {
   return (
     <div className="professional-info professional-info-edit">
+      {props.categories.map((category) => {
+        return <EditCategory key={category.type} title={category.type} items={category.items}/>
+      })}
       <button onClick={() => props.setEditMode(false)} className='btn-edit-professional'>Apply changes</button>
     </div>
   )
