@@ -32,15 +32,15 @@ function EditCategory(props) {
           return (
             <li key={item.id}>
               <label htmlFor={`title-${item.id}`}>Title</label>
-              <input type="text" name={`title-${item.id}`} id={`title-${item.id}`} />
+              <input type="text" name={`title-${item.id}`} id={`title-${item.id}`} defaultValue={item.title}/>
               <label htmlFor={`place-${item.id}`}>Place</label>
-              <input type="text" name={`place-${item.id}`} id={`place-${item.id}`} />
+              <input type="text" name={`place-${item.id}`} id={`place-${item.id}`} defaultValue={item.place}/>
               <label htmlFor={`from-year-${item.id}`}>From</label>
-              <input type="tel" name={`from-year-${item.id}`} id={`from-year-${item.id}`} />
+              <input type="tel" name={`from-year-${item.id}`} id={`from-year-${item.id}`} defaultValue={item.dates.from}/>
               <label htmlFor={`to-year-${item.id}`}>To</label>
-              <input type="tel" name={`to-year-${item.id}`} id={`to-year-${item.id}`} />
+              <input type="tel" name={`to-year-${item.id}`} id={`to-year-${item.id}`} defaultValue={item.dates.to}/>
               <label htmlFor={`description-${item.id}`}>Description</label>
-              <textarea name={`description-${item.id}`} id={`description-${item.id}`} cols="30" rows="10"></textarea>
+              <textarea name={`description-${item.id}`} id={`description-${item.id}`} cols="30" rows="10" defaultValue={item.description}></textarea>
             </li>
           )
         })}
