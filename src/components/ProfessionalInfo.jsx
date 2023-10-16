@@ -23,24 +23,40 @@ function Category(props) {
 }
 
 function EditCategory(props) {
+  const entireData = props.entireData;
   const convertedClassName = props.title.split(" ").join("-").toLowerCase();
   return (
     <div className={`${convertedClassName} ${convertedClassName}-edit`}>
       <h2>{props.title}</h2>
       <ul>
-        {props.items.map((item) => {
+        {props.items.map((item, i) => {
           return (
             <li key={item.id}>
               <label htmlFor={`title-${item.id}`}>Title</label>
-              <input type="text" name={`title-${item.id}`} id={`title-${item.id}`} defaultValue={item.title}/>
+              <input type="text" name={`title-${item.id}`} id={`title-${item.id}`} defaultValue={item.title} onChange={(e) => {
+                entireData[props.categoryIndex].items[i].title = e.target.value;
+                props.editData(entireData)
+              }}/>
               <label htmlFor={`place-${item.id}`}>Place</label>
-              <input type="text" name={`place-${item.id}`} id={`place-${item.id}`} defaultValue={item.place}/>
+              <input type="text" name={`place-${item.id}`} id={`place-${item.id}`} defaultValue={item.place} onChange={(e) => {
+                entireData[props.categoryIndex].items[i].place = e.target.value;
+                props.editData(entireData)
+              }}/>
               <label htmlFor={`from-year-${item.id}`}>From</label>
-              <input type="tel" name={`from-year-${item.id}`} id={`from-year-${item.id}`} defaultValue={item.dates.from}/>
+              <input type="tel" name={`from-year-${item.id}`} id={`from-year-${item.id}`} defaultValue={item.dates.from} onChange={(e) => {
+                entireData[props.categoryIndex].items[i].dates.from = e.target.value;
+                props.editData(entireData)
+              }}/>
               <label htmlFor={`to-year-${item.id}`}>To</label>
-              <input type="tel" name={`to-year-${item.id}`} id={`to-year-${item.id}`} defaultValue={item.dates.to}/>
+              <input type="tel" name={`to-year-${item.id}`} id={`to-year-${item.id}`} defaultValue={item.dates.to} onChange={(e) => {
+                entireData[props.categoryIndex].items[i].dates.to = e.target.value;
+                props.editData(entireData)
+              }}/>
               <label htmlFor={`description-${item.id}`}>Description</label>
-              <textarea name={`description-${item.id}`} id={`description-${item.id}`} cols="30" rows="10" defaultValue={item.description}></textarea>
+              <textarea name={`description-${item.id}`} id={`description-${item.id}`} cols="30" rows="10" defaultValue={item.description} onChange={(e) => {
+              entireData[props.categoryIndex].items[i].description = e.target.value;
+              props.editData(entireData)
+              }}></textarea>
             </li>
           )
         })}
@@ -63,8 +79,8 @@ function DisplayData(props) {
 function EditData(props) {
   return (
     <div className="professional-info professional-info-edit">
-      {props.categories.map((category) => {
-        return <EditCategory key={category.type} title={category.type} items={category.items}/>
+      {props.categories.map((category, i) => {
+        return <EditCategory key={category.type} title={category.type} items={category.items} editData={props.editData} entireData={props.entireData} categoryIndex={i}/>
       })}
       <button onClick={() => props.setEditMode(false)} className='btn-edit-professional'>Apply changes</button>
     </div>
@@ -118,7 +134,7 @@ export default function ProfessionalInfo() {
 
   return (
     editMode
-    ? <EditData categories={data} setEditMode={setEditMode} editData={editData}/>
+    ? <EditData categories={data} setEditMode={setEditMode} editData={editData} entireData={data}/>
     : <DisplayData categories={data} setEditMode={setEditMode}/>
   )
 }
