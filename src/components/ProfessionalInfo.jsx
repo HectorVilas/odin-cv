@@ -80,7 +80,24 @@ function EditData(props) {
   return (
     <div className="professional-info professional-info-edit">
       {props.categories.map((category, i) => {
-        return <EditCategory key={category.type} title={category.type} items={category.items} editData={props.editData} entireData={props.entireData} categoryIndex={i}/>
+        return (
+        <div key={category.type}>
+          <EditCategory title={category.type} items={category.items} editData={props.editData} entireData={props.entireData} categoryIndex={i}/>
+          <button className='btn-add-professional' onClick={() => {
+          const entireData = props.entireData;
+          const newData = {
+            id: crypto.randomUUID(),
+            place: 'School/Company Name',
+            title: 'Title/Job Position',
+            dates: {from: 'xxxx', to: 'xxxx'},
+            description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium, cupiditate.',
+          }
+          entireData[i].items.push(newData);
+          props.editData(entireData);
+          props.setEditMode(false);
+        }}>Add another item</button>
+        </div>
+        )
       })}
       <button onClick={() => props.setEditMode(false)} className='btn-edit-professional'>Apply changes</button>
     </div>
