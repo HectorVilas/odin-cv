@@ -92,3 +92,7 @@ textarea[name|="description"] {
   resize: none;
   height: 100px;
 }
+
+.btn-add-professional {
+  width: 100%;
+}
