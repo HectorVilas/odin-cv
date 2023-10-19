@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import '../styles/ProfessionalInfo.css'
+import '../styles/professionalInfo.css'
 
 function Category(props) {
   return (

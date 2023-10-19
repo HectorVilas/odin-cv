@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import '../styles/PersonalInfo.css'
+import '../styles/personalInfo.css'
 
 function DisplayData(props) {
   return (
